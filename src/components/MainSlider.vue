@@ -30,7 +30,8 @@ export default class MainSlider extends Vue {
   timer: any = null;
   imageList: Array<string> = [
     "https://cdn.pixabay.com/photo/2016/11/23/17/08/bag-1853847_1280.jpg",
-    "https://cdn.pixabay.com/photo/2020/03/27/17/03/shopping-4974313_1280.jpg",
+    `https://images.unsplash.com/photo-1586895279718-bf004f986ad9?ixlib=
+    rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2100&q=80`,
     "https://cdn.pixabay.com/photo/2017/08/08/00/18/guy-2609537_1280.jpg",
     `https://images.unsplash.com/photo-1509713205161-cf0cfc77174a?ixlib=rb-1.2.1&i
     xid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80`,

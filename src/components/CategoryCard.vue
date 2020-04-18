@@ -15,7 +15,7 @@
     <div
       class="c-wrapper cursor-pointer relative bg-blue-750"
       v-for="each in restCategories"
-      :key="each"
+      :key="each.title"
     >
       <img class=" block w-full h-full object-cover" :src="each.image" alt="" />
       <span
@@ -30,7 +30,7 @@
 import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 
 @Component
-export default class BestSellerSide extends Vue {
+export default class CategoryCard extends Vue {
   @Prop() title!: string;
   @Prop() subtitle!: string;
   @Prop() icon!: string;

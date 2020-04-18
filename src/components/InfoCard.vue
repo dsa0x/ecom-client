@@ -18,7 +18,7 @@
 import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 
 @Component
-export default class BestSellerSide extends Vue {
+export default class InfoCard extends Vue {
   @Prop() title!: string;
   @Prop() subtitle!: string;
   @Prop() icon!: string;

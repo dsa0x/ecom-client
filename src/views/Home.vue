@@ -1,5 +1,5 @@
 <template>
-  <div class="main grid grid-cols-10 gap-3 px-5">
+  <div class="main grid grid-cols-10 gap-6 px-5">
     <TopCategory class="col-span-2" />
     <MainSlider class="col-start-3 col-end-11 row-start-1 row-end-3" />
     <BestSellerSide class="col-span-2" />
@@ -25,7 +25,11 @@
       />
     </div>
     <CategoryCard class="col-start-1 col-end-11 row-start-4 row-end-6" />
-    <ProductList class="col-start-1 col-end-11" />
+    <PopularProducts
+      class="col-start-1 col-end-11 mt-5 row-start-6 row-end-9"
+    />
+    <NewProducts class="col-start-1 col-end-11 mt-5 row-start-9 row-end-12" />
+    <Gallery class="col-start-1 col-end-11 row-start-12 row-end-15" />
   </div>
   <!-- <div class="home flex flex-col">
     <div class="flex w-full">
@@ -65,7 +69,9 @@ import TopCategory from "@/components/TopCategory";
 import BestSellerSide from "@/components/BestSellerSide";
 import InfoCard from "@/components/InfoCard";
 import CategoryCard from "@/components/CategoryCard";
-import ProductList from "@/components/ProductList";
+import PopularProducts from "@/components/PopularProducts";
+import NewProducts from "@/components/NewProducts";
+import Gallery from "@/components/Gallery";
 
 export default {
   name: "Home",
@@ -75,7 +81,9 @@ export default {
     BestSellerSide,
     InfoCard,
     CategoryCard,
-    ProductList,
+    PopularProducts,
+    NewProducts,
+    Gallery,
   },
 };
 </script>
@@ -92,8 +100,8 @@ export default {
 
 .main {
   display: grid;
-  grid-template-rows: repeat(3, minmax(0, min-content)) 25vw repeat(
-      6,
+  grid-template-rows: repeat(3, minmax(0, min-content)) 35vh 35vh repeat(
+      10,
       minmax(0, min-content)
     );
 }

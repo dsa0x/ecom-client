@@ -1,30 +1,7 @@
 <template>
-  <div class=" product-grid text-4xl px-8">
-    <div class="title col-start-end text-gray-500 flex justify-between">
-      <span class="font-bold">{{ title }}</span>
-      <span class="hover:text-blue-650 cursor-pointer">view all &rarr;</span>
-    </div>
-    <div
-      :key="item.image"
-      v-for="item in products"
-      class="grid whole-grid relative cursor-pointer"
-    >
+  <div class=" grid grid-cols-6 grid-rows-3 text-4xl px-8 gap-4">
+    <div :key="item.image" v-for="item in products" class="cursor-pointer">
       <img :src="item.image" alt="" class="bg-top object-cover" />
-      <div class="details grid grid-cols-6 py-4 cursor-pointer  h-24 group">
-        <span class="mdi mdi-eye bg-blue-650"></span>
-        <div
-          class="cart-btn text-gray-500 text-2xl bg-blue-750 group-hover:bg-blue-650 col-start-2 col-end-6"
-        >
-          + Add to Cart
-        </div>
-        <span class="mdi mdi-heart bg-blue-650"></span>
-      </div>
-      <div
-        class="flex flex-col justify-center pl-4 items-start text-gray-500 bg-blue-750 group-hover:bg-blue-750 z-10"
-      >
-        <span class="text-3xl">{{ item.title }}</span>
-        <span class="text-4xl">{{ item.price }}</span>
-      </div>
     </div>
   </div>
 </template>
@@ -33,12 +10,10 @@
 import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 
 @Component
-export default class ProductList extends Vue {
+export default class Gallery extends Vue {
   @Prop() title!: string;
-  @Prop() products!: string;
-  @Prop() subtitle!: string;
   @Prop() icon!: string;
-  test: Array<object> = [
+  products: Array<object> = [
     {
       image: `https://images.unsplash.com/photo-1516826957135-700dedea698c?ixlib=rb-1.2.1&ixid=
         eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80`,
@@ -76,16 +51,36 @@ export default class ProductList extends Vue {
       price: "$700.00",
     },
     {
+      image: `https://images.unsplash.com/photo-1504703395950-b89145a5425b?ixlib=
+      rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=951&q=80`,
+      title: "Striped TShirt",
+      price: "$700.00",
+    },
+    {
+      image: `https://images.unsplash.com/photo-1585159812874-5b84415c0091?ixlib=
+      rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=811&q=80`,
+      title: "Striped Jeans",
+      price: "$700.00",
+    },
+    {
+      image: `https://images.unsplash.com/photo-1504703395950-b89145a5425b?ixlib=
+      rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=951&q=80`,
+      title: "Striped TShirt",
+      price: "$700.00",
+    },
+    {
+      image: `https://images.unsplash.com/photo-1585159812874-5b84415c0091?ixlib=
+      rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=811&q=80`,
+      title: "Striped Jeans",
+      price: "$700.00",
+    },
+    {
       image: `https://images.unsplash.com/photo-1586898936421-67ffc8e3a5b5?ixlib=
       rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=930&q=80`,
       title: "Striped Sac",
       price: "$700.00",
     },
   ];
-
-  get restCategories() {
-    return this.test.slice(1);
-  }
 }
 </script>
 
