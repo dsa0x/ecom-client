@@ -19,7 +19,7 @@ const purgecss = postcssPurgecss({
 
 module.exports = {
   plugins: [
-    tailwindcss,
+    tailwindcss("./tailwind.config.js"),
     autoprefixer,
     ...(process.env.NODE_ENV === "production" ? [purgecss] : [])
   ]
