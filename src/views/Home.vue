@@ -26,10 +26,10 @@
     </div>
     <CategoryCard class="col-start-1 col-end-11 row-start-4 row-end-6" />
     <PopularProducts
-      class="col-start-1 col-end-11 mt-5 row-start-6 row-end-9"
+      class="col-start-1 col-end-11 mt-5 row-start-6 row-end-7"
     />
-    <NewProducts class="col-start-1 col-end-11 mt-5 row-start-9 row-end-12" />
-    <Gallery class="col-start-1 col-end-11 row-start-12 row-end-15" />
+    <NewProducts class="col-start-1 col-end-11 mt-5 row-start-7 row-end-8" />
+    <Gallery class="col-start-1 col-end-11 row-start-8 row-end-9" />
   </div>
   <!-- <div class="home flex flex-col">
     <div class="flex w-full">
@@ -101,7 +101,7 @@ export default {
 .main {
   display: grid;
   grid-template-rows: repeat(3, minmax(0, min-content)) 35vh 35vh repeat(
-      10,
+      4,
       minmax(0, min-content)
     );
 }

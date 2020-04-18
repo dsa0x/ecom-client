@@ -101,8 +101,4 @@ $blue-light: #228efb;
 .click-down:hover {
   @apply transform -translate-y-1 transition-all duration-200;
 }
-
-$color-white: rgba(165, 165, 165, 1);
-$bg-main: rgb(44, 44, 57);
-$font-default: 1.5rem;
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="main-grid gap-4 px-8">
+  <div class="main-grid gap-4">
     <div
       :key="index"
       v-for="(item, index) in products"
@@ -9,7 +9,7 @@
       <img
         :src="item.image"
         alt=""
-        class=" w-full h-full bg-center object-cover scale-down"
+        class=" w-full h-full bg-center object-cover c-img"
       />
     </div>
   </div>
@@ -116,12 +116,12 @@ export default class Gallery extends Vue {
 <style scoped lang="scss">
 .main-grid {
   display: grid;
-  height: 700px;
+  height: 500px;
   grid-template-columns: repeat(8, 1fr);
   grid-template-rows: repeat(7, 1fr);
 }
 
-.scale-down {
+.c-img {
   transform: scale(1.4);
   transition: all 0.5s;
 

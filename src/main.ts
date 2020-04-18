@@ -7,10 +7,11 @@ import store from "./store";
 import "@mdi/font/css/materialdesignicons.css";
 
 import "./assets/css/index.css";
+
 Vue.config.productionTip = false;
 
 new Vue({
   router,
   store,
-  render: h => h(App)
+  render: (h) => h(App),
 }).$mount("#app");

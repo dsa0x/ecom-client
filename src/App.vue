@@ -6,13 +6,17 @@
     <div>
       <router-view></router-view>
     </div>
+    <div>
+      <Footer />
+    </div>
   </div>
 </template>
 
 <script>
 import Nav from "@/components/Nav";
+import Footer from "@/components/Footer";
 export default {
-  components: { Nav }
+  components: { Nav, Footer },
 };
 </script>
 

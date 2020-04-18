@@ -7,9 +7,9 @@
     <div
       :key="item.image"
       v-for="item in products"
-      class="grid whole-grid relative cursor-pointer"
+      class="grid whole-grid relative cursor-pointer overflow-hidden"
     >
-      <img :src="item.image" alt="" class="bg-top object-cover" />
+      <img :src="item.image" alt="" class="bg-top object-cover scale-down" />
       <div class="details grid grid-cols-6 py-4 cursor-pointer  h-24 group">
         <span class="mdi mdi-eye bg-blue-650"></span>
         <div
@@ -91,6 +91,16 @@ export default class ProductList extends Vue {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+.scale-down {
+  transform: scale(1.4);
+  transition: all 0.5s;
+
+  &:hover {
+    filter: brightness(90%);
+    transform: scale(1);
+  }
+}
+
 .whole-grid {
   .details {
     position: absolute;

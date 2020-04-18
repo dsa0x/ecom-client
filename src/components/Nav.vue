@@ -1,6 +1,6 @@
 <template>
-  <div class="flex flex-col">
-    <nav class="nav flex bg-gray-100 h-16 items-center justify-between">
+  <div class="flex flex-col relative h-64 fixed top-0 overflow-hidden">
+    <nav class="nav flex bg-gray-100 h-16 items-center justify-between ">
       <ul class="flex w-1/4 justify-around">
         <li class="">
           <a class="hover:text-gray-600" href="#">
@@ -21,7 +21,10 @@
       <div>Free shipping on all orders above {{ currency.symbol }}100</div>
       <div class="w-1/4 flex h-full justify-around ">
         <span v-show="isLoggedIn">Welcome DSA</span>
-        <span class="w-1/2 h-full flex relative pointer">
+        <span
+          class="w-1/2 h-full flex relative pointer"
+          @mouseleave="isOpen = false"
+        >
           <span class="h-full flex items-center" @click="isOpen = !isOpen">
             {{ currency.symbol }} {{ currency.name }} &#9662;
           </span>
@@ -33,7 +36,7 @@
             >
               <ul class="">
                 <li
-                  class=" block p-3 w-64 pointer hover:bg-blue-650"
+                  class=" block p-3 w-64 pointer hover:bg-gray-800 hover:text-blue-200 hover:text-gray-500"
                   v-for="(currenc, id) in currencyList"
                   :key="id"
                   @click="setCurrency(currenc)"
@@ -49,7 +52,7 @@
       </div>
     </nav>
 
-    <div class="p-10 bg-gray-900 flex items-center">
+    <div class="p-10 bg-gray-900 flex items-center absolute bottom-0 w-full">
       <div class="text-6xl text-gray-200">JOURNAL</div>
       <div class="w-1/2 ml-16 flex relative items-stretch">
         <span
@@ -106,7 +109,7 @@ export default class Nav extends Vue {
   currencyList: Object = {
     euro: { name: "Euro", symbol: "€" },
     usd: { name: "US Dollars", symbol: "$" },
-    pound: { name: "Pounds", symbol: "£" }
+    pound: { name: "Pounds", symbol: "£" },
   };
   currency: Object = { name: "Euro", symbol: "€" };
   isOpen: Boolean = false;
