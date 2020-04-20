@@ -1,9 +1,9 @@
 <template>
-  <div class="flex flex-col relative h-64 fixed top-0 overflow-hidden">
+  <div class="flex flex-col relative overflow-hidden">
     <nav class="nav flex bg-gray-100 h-16 items-center justify-between ">
       <ul class="flex w-1/4 justify-around">
         <li class="">
-          <a class="hover:text-gray-600" href="#">
+          <a class="hover:text-gray-600" @click="home" href="#">
             <span class="pr-1 mdi mdi-home "></span>Home
           </a>
         </li>
@@ -52,8 +52,8 @@
       </div>
     </nav>
 
-    <div class="p-10 bg-gray-900 flex items-center absolute bottom-0 w-full">
-      <div class="text-6xl text-gray-200">JOURNAL</div>
+    <div class="p-10 bg-gray-1050 flex items-center w-full">
+      <div class="text-5xl text-gray-200 uppercase">Ecom</div>
       <div class="w-1/2 ml-16 flex relative items-stretch">
         <span
           class="flex bg-blue-650 text-white text-3xl active:bg-blue-600 text-center py-6 px-3 cursor-pointer rounded-l-lg"
@@ -74,28 +74,21 @@
         ></span>
       </div>
       <div class="flex text-2xl justify-around flex-grow ml-16">
-        <div
-          class="flex flex-col text-gray-500 hover:text-gray-100 active:text-gray-300 cursor-pointer"
-        >
+        <div @click="login" class="icons-text">
           <span class=" text-5xl mdi mdi-account-circle"></span>Login
         </div>
-        <div
-          class="flex flex-col text-gray-500 hover:text-gray-100 active:text-gray-300  cursor-pointer"
-        >
+        <div @click="register" class="icons-text">
           <span class="text-5xl mdi mdi-account-multiple-plus"></span>Register
         </div>
-        <div
-          class="flex flex-col text-gray-500 hover:text-gray-100 active:text-gray-300  cursor-pointer"
-        >
+        <div class="icons-text">
           <span class="text-5xl mdi mdi-heart-outline"></span>Wishlist
         </div>
-        <div
-          class="flex flex-col text-gray-500 hover:text-gray-100 active:text-gray-300  cursor-pointer"
-        >
+        <div class="icons-text">
           <span class="text-5xl mdi mdi-cart"></span>Cart
         </div>
       </div>
     </div>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -111,7 +104,7 @@ export default class Nav extends Vue {
     usd: { name: "US Dollars", symbol: "$" },
     pound: { name: "Pounds", symbol: "£" },
   };
-  currency: Object = { name: "Euro", symbol: "€" };
+  currency: object = { name: "Euro", symbol: "€" };
   isOpen: Boolean = false;
   isLoggedIn: Boolean = false;
 
@@ -123,6 +116,17 @@ export default class Nav extends Vue {
 
   toggle() {
     this.isOpen = !this.isOpen;
+  }
+
+  register() {
+    this.$router.push({ name: "Register" }).catch((err) => {});
+  }
+
+  login() {
+    this.$router.push({ name: "Login" }).catch((err) => {});
+  }
+  home() {
+    this.$router.push({ name: "Home" }).catch((err) => {});
   }
 }
 </script>
@@ -174,5 +178,16 @@ $font-default: 1.5rem;
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
+}
+.icons-text {
+  @apply flex flex-col text-gray-500   cursor-pointer;
+
+  &:hover {
+    @apply text-gray-100;
+  }
+
+  &:active {
+    @apply text-gray-300;
+  }
 }
 </style>

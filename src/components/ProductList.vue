@@ -11,16 +11,21 @@
     >
       <img :src="item.image" alt="" class="bg-top object-cover scale-down" />
       <div class="details grid grid-cols-6 py-4 cursor-pointer  h-24 group">
-        <span class="mdi mdi-eye bg-blue-650"></span>
+        <span
+          class="mdi mdi-eye bg-blue-650 group-hover:bg-blue-1050 group-hover:text-blue-650"
+        ></span>
         <div
-          class="cart-btn text-gray-500 text-2xl bg-blue-750 group-hover:bg-blue-650 col-start-2 col-end-6"
+          class="cart-btn text-gray-500 text-3xl bg-blue-750 group-hover:text-blue-900 group-hover:bg-blue-650
+           col-start-2 col-end-6"
         >
           + Add to Cart
         </div>
-        <span class="mdi mdi-heart bg-blue-650"></span>
+        <span
+          class="mdi mdi-heart bg-blue-650 group-hover:bg-blue-1050 group-hover:text-blue-650"
+        ></span>
       </div>
       <div
-        class="flex flex-col justify-center pl-4 items-start text-gray-500 bg-blue-750 group-hover:bg-blue-750 z-10"
+        class="flex flex-col justify-center items-start text-gray-500 bg-blue-1050  z-10"
       >
         <span class="text-3xl">{{ item.title }}</span>
         <span class="text-4xl">{{ item.price }}</span>
@@ -108,7 +113,13 @@ export default class ProductList extends Vue {
     width: 100%;
 
     bottom: 0;
-    transition: all 1s;
+    transition: all 0.6s;
+
+    & > * {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
 
   &:hover {
@@ -120,7 +131,7 @@ export default class ProductList extends Vue {
 
 .product-grid {
   display: grid;
-  gap: 2rem 4rem;
+  gap: 4rem 2rem;
   grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
 
   align-content: center;

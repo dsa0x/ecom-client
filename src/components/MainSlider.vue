@@ -1,12 +1,12 @@
 <template>
-  <div class="">
+  <div class="relative">
     <div class="" v-for="img in [currentIndex]" :key="img" alt="">
       <transition name="fade">
         <img :src="currentImg" class="object-cover w-full" alt="" />
       </transition>
     </div>
 
-    <div class="slider-select p-3 m-2 z-40 absolute right-0 flex flex-col">
+    <div class="slider-select p-3 m-2 z-40 absolute flex flex-col">
       <div
         @click="setImg(index)"
         v-for="(img, index) in imageList"
@@ -107,7 +107,7 @@ img {
 }
 
 .slider-select {
-  top: 50rem;
+  top: 0;
   right: 2rem;
 }
 

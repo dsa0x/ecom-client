@@ -1,65 +1,45 @@
 <template>
-  <div class="main grid grid-cols-10 gap-6 px-5">
-    <TopCategory class="col-span-2" />
-    <MainSlider class="col-start-3 col-end-11 row-start-1 row-end-3" />
-    <BestSellerSide class="col-span-2" />
-    <div class="info__main">
-      <InfoCard
-        class="py-5"
-        title="Free Shipping"
-        subtitle="On All Orders"
-        icon="mdi-motorbike"
-      />
+  <div class="relative transition transition-all duration-200">
+    <div class="main grid grid-cols-10 gap-6 px-5">
+      <TopCategory class="col-span-2" />
+      <MainSlider class="col-start-3 col-end-11 row-start-1 row-end-3" />
+      <BestSellerSide class="col-span-2" />
+      <div class="info__main">
+        <InfoCard
+          class="py-5"
+          title="Free Shipping"
+          subtitle="On All Orders"
+          icon="mdi-motorbike"
+        />
 
-      <InfoCard
-        class="py-5"
-        title="24/7 Support"
-        subtitle="Get help ASAP"
-        icon="mdi-headset"
-      />
-      <InfoCard
-        class="py-5"
-        title="100% Return"
-        subtitle="Within 30 Days"
-        icon="mdi-keyboard-return"
-      />
-    </div>
-    <CategoryCard class="col-start-1 col-end-11 row-start-4 row-end-6" />
-    <PopularProducts
-      class="col-start-1 col-end-11 mt-5 row-start-6 row-end-7"
-    />
-    <NewProducts class="col-start-1 col-end-11 mt-5 row-start-7 row-end-8" />
-    <Gallery class="col-start-1 col-end-11 row-start-8 row-end-9" />
-  </div>
-  <!-- <div class="home flex flex-col">
-    <div class="flex w-full">
-      <div class="flex-grow flex flex-col">
-        <TopCategory class="" />
-        <BestSellerSide />
+        <InfoCard
+          class="py-5"
+          title="24/7 Support"
+          subtitle="Get help ASAP"
+          icon="mdi-headset"
+        />
+        <InfoCard
+          class="py-5"
+          title="100% Return"
+          subtitle="Within 30 Days"
+          icon="mdi-keyboard-return"
+        />
       </div>
-      <MainSlider class="w-3/4 ml-auto" />
+      <CategoryCard class="col-start-1 col-end-11 row-start-4 row-end-6" />
+      <PopularProducts
+        class="col-start-1 col-end-11 mt-5 row-start-6 row-end-7"
+      />
+      <NewProducts class="col-start-1 col-end-11 mt-5 row-start-7 row-end-8" />
+      <Gallery class="col-start-1 col-end-11 row-start-8 row-end-9" />
     </div>
-    <div class="flex justify-around mt-8">
-      <InfoCard
-        class="h-30 w-1/4 py-5"
-        title="Free Shipping"
-        subtitle="On All Orders"
-        icon="mdi-motorbike"
-      />
-      <InfoCard
-        class="h-30 w-1/4 py-5"
-        title="24/7 Support"
-        subtitle="Get help ASAP"
-        icon="mdi-headset"
-      />
-      <InfoCard
-        class="h-30 w-1/4 py-5"
-        title="100% Return"
-        subtitle="Within 30 Days"
-        icon="mdi-keyboard-return"
-      />
+    <div
+      @click.self="home"
+      v-if="modalOpen"
+      class="flex justify-center absolute view"
+    >
+      <router-view></router-view>
     </div>
-  </div> -->
+  </div>
 </template>
 
 <script>
@@ -85,6 +65,16 @@ export default {
     NewProducts,
     Gallery,
   },
+  computed: {
+    modalOpen() {
+      return this.$route.path !== "/";
+    },
+  },
+  methods: {
+    home() {
+      this.$router.push({ name: "Home" });
+    },
+  },
 };
 </script>
 
@@ -105,9 +95,19 @@ export default {
       minmax(0, min-content)
     );
 }
-// grid-template-columns:
-//   [sidebar-start] 8rem [sidebar-end full-start] minmax(6rem, 1fr)
-//   [center-start]
-//   repeat(8, [col-start] minmax(min-content, 14rem) [col-end])
-//   [center-end] minmax(6rem, 1fr) [full-end];
+
+.view {
+  transition: all 0.4s;
+  // width: 80vw;
+  overflow: hidden;
+  height: 70vh;
+  @apply absolute;
+  background: rgba(0, 0, 0, 0.5);
+  padding-top: 2rem;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  z-index: 10;
+}
 </style>

@@ -72,7 +72,9 @@
         <span class="px-2 mdi mdi-snapchat hov"></span>
         <span class="px-2 mdi mdi-email hov"></span>
       </div>
-      <div class="text-4xl self-center m-auto hov">&copy; Copyright 2020</div>
+      <div class="text-4xl self-center m-auto hov transform -translate-x-16">
+        &copy; Copyright 2020
+      </div>
     </div>
   </div>
 </template>
