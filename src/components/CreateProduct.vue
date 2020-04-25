@@ -31,17 +31,34 @@
     </div>
 
     <div
-      class="flex flex-col col-start-1 col-end-2 row-start-3 row-end-4 items-start "
+      class="flex justify-between col-start-1 col-end-4 row-start-3 row-end-4 items-start "
     >
-      <label class="input-label" for="title">Price</label>
-      <input class="input" type="text" name="title" v-model="product.price" />
+      <div class="flex flex-col items-start">
+        <label class="input-label" for="title">Regular Price</label>
+        <input
+          class="input"
+          type="number"
+          name="title"
+          v-model="product.price"
+        />
+      </div>
+      <div class="flex flex-col items-start">
+        <label class="input-label" for="title">Sale Price</label>
+        <input
+          class="input"
+          type="number"
+          name="title"
+          v-model="product.salePrice"
+        />
+      </div>
     </div>
     <div
-      class=" h-full rounded-md bg-gray-100 grid grid-cols-4 col-start-1 col-end-4 row-start-4 row-end-5 items-start cursor-pointer"
+      class=" h-full rounded-md flex flex-col grid-cols-4 col-start-1 col-end-4 row-start-4 row-end-5 items-start cursor-pointer"
     >
-      <AttachmentList :images="images" />
+      <label class="input-label" for="title">Upload Images</label>
+      <!-- <div class="grid grid-cols-4"> -->
       <vue-dropzone
-        class="w-full flex col-start-1 col-end-2"
+        class="bg-gray-100 w-full flex py-4"
         ref="uploadDropZone"
         id="uploadDropZone"
         :options="dropzoneOptions"
@@ -53,18 +70,9 @@
         @vdropzone-sending="sendingFile"
         @vdropzone-success-multiple="success"
       >
-        <!-- <div class="flex flex-col">
-          <span class=" text-8xl text-blue-1050 mdi mdi-cloud-upload"></span>
-          <label class="input-label" for="title"
-            >Drag Images here to upload</label
-          >
-          <button>Browse</button>
-        </div> -->
-
-        <span
-          class="text-8xl text-blue-1050 flex items-center justify-center mdi mdi-image-plus w-64 h-64 m-4 bg-gray-200"
-        ></span>
+        <AttachmentList :images="getImages" />
       </vue-dropzone>
+      <!-- </div> -->
     </div>
     <div class="row-start-5 row-end-6">
       <btn label="Submit" :onClick="submit" color="light"></btn>
@@ -92,12 +100,12 @@ interface Image {
 }
 interface Product {
   title: string;
-  images: Array<string>;
+  images: Array<{ id: number | null; url: string }>;
   price: number;
+  salePrice: number;
   description: string;
 }
 
-process.env.SERVER_URL = "http://localhost:5000";
 @Component({
   components: {
     btn: Button,
@@ -114,21 +122,18 @@ export default class CreateProduct extends Vue {
     title: "",
     images: [],
     price: 0,
+    salePrice: 0,
     description: "",
   };
 
-  get getProduct() {
-    return this.product;
-  }
-
   dropzoneOptions: object = {
-    url: `http://localhost:5000/upload`,
+    url: `${process.env.VUE_APP_SERVER_URL}/upload`,
     headers: {
       Authorization: `Bearer ${this.token}`,
     },
     autoDiscover: false,
     thumbnailWidth: 100,
-    maxFilesize: 2,
+    maxFilesize: 5,
     acceptedFiles: "image/*",
     dictDefaultMessage: "Click or Drag Files here to upload",
     includeStyling: false,
@@ -144,28 +149,28 @@ export default class CreateProduct extends Vue {
     return this.$store.state.user.token;
   }
 
+  get getImages() {
+    return this.images;
+  }
+
   async submit() {
     try {
       axios.defaults.headers.common["Authorization"] = `Bearer ${this.token}`;
       const product = await axios.post(
-        // `${process.env.SERVER_URL}/product`,
-        `http://localhost:5000/products`,
+        `${process.env.VUE_APP_SERVER_URL}/products`,
+        // `http://localhost:5000/products`,
 
-        <any>this.product,
-        {
-          headers: {
-            "content-type": "multipart/form-data",
-          },
-        }
+        <any>this.product
       );
     } catch (error) {
       console.log(error.response);
     }
+
+    this.product.images = [];
+    this.images = [];
   }
 
   fileAdded(file) {
-    // console.log(file);
-    this.product.images.push(file);
     let image: Image = {
       id: file.upload.uuid,
       progress: null,
@@ -180,6 +185,11 @@ export default class CreateProduct extends Vue {
   }
 
   uploadProgress(file, progress, bytesSent) {
+    this.images.map((img) => {
+      if (img.id == file.upload.uuid) {
+        img.progress = Math.round(progress);
+      }
+    });
     console.log(progress, "progress");
     console.log(bytesSent, "bytes");
   }
@@ -191,25 +201,26 @@ export default class CreateProduct extends Vue {
       .join("-");
     let ext = str.split(".");
     if (str.length <= num) {
-      return str + "." + ext[ext.length - 1];
+      return `${Date.now()}-${str + "." + ext[ext.length - 1]}`;
     }
-    return str.slice(0, num) + "." + ext[ext.length - 1];
+    return `${Date.now()}-${str.slice(0, num) + "." + ext[ext.length - 1]}`;
   }
 
   sendingFile(file, xhr, formData) {
-    const fileType = file.type.split("/")[1];
+    const imageTitle = this.formatImageTitle(file.name, 12);
+    this.product.images.push({ url: imageTitle, id: 12 });
+    formData.append("fileName", imageTitle);
   }
 
   setThumb(file, thumbnail) {
     console.log(thumbnail);
     this.images.map((img) => {
       if (img.id == file.upload.uuid) {
-        //   this.product.images.push(img.)
         img.thumbnail = thumbnail;
       }
     });
 
-    console.log(this.images);
+    // console.log(this.images);
   }
   success(file, res) {
     console.log("file sent");
@@ -225,14 +236,18 @@ export default class CreateProduct extends Vue {
   grid-template-rows: repeat(6, minmax(0, min-content));
 }
 
+.attach {
+  grid-column: 2/-1;
+}
+
 #uploadDropZone {
   display: flex;
   align-items: center;
 }
 
 .input {
-  @apply w-full px-5 bg-white rounded-sm bg-gray-200 text-blue-750 
-  rounded-r-lg overflow-hidden py-4 text-3xl leading-tight border-none appearance-none;
+  @apply w-full px-5 bg-white bg-gray-200 text-blue-750 
+  rounded-lg overflow-hidden py-4 text-3xl leading-tight border-none appearance-none;
   border-bottom: solid 2px transparent;
   &:focus {
     border-bottom: solid 2px blue;

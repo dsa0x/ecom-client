@@ -24,9 +24,9 @@
             {{ test[0].title }}
           </div>
           <div class="text-2xl py-4">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ad,
-            aspernatur! Maiores hic minus tenetur alias eius praesentium iure
-            corrupti vitae?
+            product Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+            Ad, aspernatur! Maiores hic minus tenetur alias eius praesentium
+            iure corrupti vitae?
           </div>
           <div class="text-5xl">
             {{ test[0].price }}
@@ -93,6 +93,11 @@ export default class ProductDetails extends Vue {
   @Prop() subtitle!: string;
   @Prop() icon!: string;
   quantity: number = 1;
+  get product() {
+    return this.$store.state.products.find((product) => {
+      product.slug == this.$route.query.slug;
+    });
+  }
   test: Array<object> = [
     {
       image: `https://images.unsplash.com/photo-1504093376055-b3094b674dcb?ixlib=rb-1.2.1&ixid=

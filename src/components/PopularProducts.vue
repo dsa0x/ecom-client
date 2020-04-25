@@ -1,20 +1,49 @@
 <template>
   <div>
-    <ProductList :title="title" :products="products" />
+    <ProductList :title="title" :products="allProducts" />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 import ProductList from "./ProductList.vue";
+import axios from "axios";
+import { productMixin } from "@/mixins/productMixin";
 
 @Component({
   components: {
     ProductList,
   },
+
+  // mixins: [productMixin],
 })
 export default class PopularProducts extends Vue {
   title: string = "Popular Products";
+
+  get allProducts() {
+    return this.$store.state.products;
+  }
+
+  async getProducts() {
+    if (!this.$store.state.products.length) {
+      const products = await axios.get(
+        `${process.env.VUE_APP_SERVER_URL}/products`
+      );
+      if (products) {
+        products.data.forEach((product) => {
+          product.images = product.images.map(
+            (img) =>
+              `${process.env.VUE_APP_SERVER_URL}/assets/images/${img.url}`
+          );
+        });
+        this.$store.commit("ADD_PRODUCTS", products.data);
+      }
+    }
+  }
+  async mounted() {
+    await this.getProducts();
+  }
+
   products: Array<object> = [
     {
       image: `https://images.unsplash.com/photo-1562869319-a1368ba7fe75?ixlib=

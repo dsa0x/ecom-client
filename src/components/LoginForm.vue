@@ -65,6 +65,7 @@ export default class LoginForm extends Vue {
           user: user.data._user,
           token: user.data.token,
         });
+      this.$router.push({ path: "/" });
     } catch (error) {
       console.log(error.response);
     }

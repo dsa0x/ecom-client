@@ -1,17 +1,19 @@
 <template>
-  <div class=" product-grid text-4xl px-8">
+  <div v-if="products" class=" product-grid text-4xl px-8">
     <div class="title col-start-end text-gray-500 flex justify-between">
       <span class="font-bold">{{ title }}</span>
       <span class="hover:text-blue-650 cursor-pointer">view all &rarr;</span>
     </div>
+    <!-- v-if="products" -->
+
     <div
-      :key="item.image"
+      :key="item.images[0].id"
       v-for="item in products"
       class="grid whole-grid relative cursor-pointer overflow-hidden"
     >
       <img
         @click="goToProduct(item.id)"
-        :src="item.image"
+        :src="item.images"
         alt=""
         class="bg-center object-cover scale-down"
       />
@@ -33,7 +35,7 @@
         class="flex flex-col justify-center items-start text-gray-500 bg-blue-1050  z-10"
       >
         <span class="text-3xl">{{ item.title }}</span>
-        <span class="text-4xl">{{ item.price }}</span>
+        <span class="text-4xl">{{ item.price | currencify }}</span>
       </div>
     </div>
   </div>
@@ -42,7 +44,17 @@
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 
-@Component
+@Component({
+  filters: {
+    currencify(value) {
+      if (!value) return "";
+      return new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+      }).format(value);
+    },
+  },
+})
 export default class ProductList extends Vue {
   @Prop() title!: string;
   @Prop() products!: string;
@@ -50,7 +62,8 @@ export default class ProductList extends Vue {
   @Prop() icon!: string;
 
   goToProduct(id) {
-    this.$router.push({ name: "ProductDetails", params: { id: id } });
+    console.log(this.products);
+    // this.$router.push({ name: "ProductDetails", params: { id: id } });
   }
 }
 </script>

@@ -15,8 +15,6 @@ export default new Vuex.Store({
   },
   mutations: {
     SET_USER(state, { user }) {
-      console.log("commiting");
-
       state.user = { ...state.user, ...user };
     },
     SET_LOGGED_IN({ user }, loginStatus) {
@@ -24,6 +22,9 @@ export default new Vuex.Store({
     },
     SET_TOKEN({ user }, token) {
       user.token = token;
+    },
+    ADD_PRODUCTS(state, products) {
+      state.products = products;
     },
   },
   actions: {

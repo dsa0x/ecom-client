@@ -75,6 +75,9 @@ export default {
       this.$router.push({ name: "Home" });
     },
   },
+  mounted() {
+    console.log(process.env.VUE_APP_SERVER_URL, "surl");
+  },
 };
 </script>
 
