@@ -12,6 +12,15 @@ module.exports = {
           "750": "#201F28",
           "1050": "#121212",
         },
+        gold: {
+          "100": "#c69963",
+        },
+        custom: {
+          "100": "#1F2327",
+          "200": "#CA936A",
+          "300": "#C5875A",
+          "400": "#895E3F ",
+        },
       },
       boxShadow: {
         xldark:
@@ -21,6 +30,9 @@ module.exports = {
       fontSize: {
         "8xl": "6rem",
       },
+    },
+    right: {
+      2: "2rem",
     },
   },
   variants: {

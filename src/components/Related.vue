@@ -13,20 +13,22 @@ import ProductList from "./ProductList.vue";
     ProductList,
   },
 })
-export default class NewProducts extends Vue {
-  title: string = "New Products";
+export default class Related extends Vue {
+  title: string = "Related";
   products: Array<object> = [
     {
       image: `https://images.unsplash.com/photo-1562869319-a1368ba7fe75?ixlib=
       rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80`,
       title: "Men's Collection",
       price: "$700.00",
+      id: 1,
     },
     {
       image: `https://images.unsplash.com/photo-1501728636520-11c972bd5e2e?ixlib=
       rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=976&q=80`,
       title: "Women's Shoelaces",
       price: "$700.00",
+      id: 2,
     },
     {
       image: `https://images.unsplash.com/flagged/photo-1556637174-70445fe8b11e?ixlib=

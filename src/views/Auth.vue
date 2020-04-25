@@ -7,8 +7,8 @@
       </transition-group>
       <div class="overflow-hidden col-start-2 col-end-3">
         <img
+          :src="imageList[0]"
           class="w-full object-cover bg-center h-full"
-          src="https://images.unsplash.com/photo-1495121605193-b116b5b9c5fe?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80"
           alt="Image"
         />
       </div>
@@ -25,6 +25,11 @@ export default class Auth extends Vue {
   get restCategories() {
     return 1;
   }
+
+  imageList: Array<string> = [
+    `https://images.unsplash.com/photo-1548100721-15f0e76035c8?ixlib=
+      rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80`,
+  ];
 }
 </script>
 

@@ -20,7 +20,7 @@
       </ul>
       <div>Free shipping on all orders above {{ currency.symbol }}100</div>
       <div class="w-1/4 flex h-full justify-around ">
-        <span v-show="isLoggedIn">Welcome DSA</span>
+        <span v-show="isLoggedIn">Welcome {{ lastName }}</span>
         <span
           class="w-1/2 h-full flex relative pointer"
           @mouseleave="isOpen = false"
@@ -36,7 +36,7 @@
             >
               <ul class="">
                 <li
-                  class=" block p-3 w-64 pointer hover:bg-gray-800 hover:text-blue-200 hover:text-gray-500"
+                  class=" block p-3 w-64 pointer bg-custom-100 hover:bg-custom-300 text-blue-200"
                   v-for="(currenc, id) in currencyList"
                   :key="id"
                   @click="setCurrency(currenc)"
@@ -56,7 +56,7 @@
       <div class="text-5xl text-gray-200 uppercase">Ecom</div>
       <div class="w-1/2 ml-16 flex relative items-stretch">
         <span
-          class="flex bg-blue-650 text-white text-3xl active:bg-blue-600 text-center py-6 px-3 cursor-pointer rounded-l-lg"
+          class="flex bg-custom-300 text-white text-3xl active:bg-custom-400 text-center py-6 px-3 cursor-pointer rounded-l-lg"
           >All &#9662;</span
         >
         <input
@@ -70,14 +70,14 @@
         />
         <span
           class="absolute text-5xl mdi mdi-shield-search h-full right-0
-          bg-blue-650 text-white active:bg-blue-600 px-3 pt-2 cursor-pointer rounded-r-lg"
+          bg-custom-300 text-white active:bg-custom-400 px-3 pt-2 cursor-pointer rounded-r-lg"
         ></span>
       </div>
       <div class="flex text-2xl justify-around flex-grow ml-16">
-        <div @click="login" class="icons-text">
+        <div v-if="!isLoggedIn" @click="login" class="icons-text">
           <span class=" text-5xl mdi mdi-account-circle"></span>Login
         </div>
-        <div @click="register" class="icons-text">
+        <div v-if="!isLoggedIn" @click="register" class="icons-text">
           <span class="text-5xl mdi mdi-account-multiple-plus"></span>Register
         </div>
         <div class="icons-text">
@@ -85,6 +85,13 @@
         </div>
         <div class="icons-text">
           <span class="text-5xl mdi mdi-cart"></span>Cart
+        </div>
+        <div
+          v-if="isLoggedIn"
+          @click="$router.push({ name: 'CreateProduct' })"
+          class="icons-text"
+        >
+          <span class="text-5xl mdi mdi-cart"></span>Admin
         </div>
       </div>
     </div>
@@ -106,7 +113,13 @@ export default class Nav extends Vue {
   };
   currency: object = { name: "Euro", symbol: "€" };
   isOpen: Boolean = false;
-  isLoggedIn: Boolean = false;
+  get isLoggedIn() {
+    return this.$store.state.user.isLoggedIn;
+  }
+
+  get lastName() {
+    return this.$store.state.user.lastName;
+  }
 
   setCurrency(currency: Object) {
     console.log(currency);

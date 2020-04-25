@@ -8,7 +8,7 @@
         :src="test[0].image"
         alt=""
       />
-      <span class="c-text text-blue-650 text-8xl font-bold">{{
+      <span class="c-text text-blue-100 text-8xl font-bold">{{
         test[0].title
       }}</span>
     </div>
@@ -19,7 +19,7 @@
     >
       <img class=" block w-full h-full object-cover" :src="each.image" alt="" />
       <span
-        class="c-text-1 absolute bottom-0 right-0 text-blue-650 text-5xl font-bold"
+        class="c-text-1 absolute bottom-0 right-0 text-blue-100 text-5xl font-bold"
         >{{ each.title }}</span
       >
     </div>
@@ -36,32 +36,32 @@ export default class CategoryCard extends Vue {
   @Prop() icon!: string;
   test: Array<object> = [
     {
-      image: `https://images.unsplash.com/photo-1516826957135-700dedea698c?ixlib=rb-1.2.1&ixid=
-        eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80`,
+      image: `https://images.unsplash.com/photo-1504093376055-b3094b674dcb?ixlib=rb-1.2.1&ixid=
+      eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80`,
       title: "Men's Collection",
       price: "$700.00",
     },
     {
-      image: `https://images.unsplash.com/photo-1508350552147-213c11fcede6?ixlib=rb-1.2.1&ixid=
-      eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=800`,
+      image: `https://images.unsplash.com/photo-1516924962500-2b4b3b99ea02?ixlib=
+      rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80`,
       title: "Women's",
       price: "$700.00",
     },
     {
-      image: `https://images.unsplash.com/photo-1540924782561-3fc182603b86?ixlib=
-      rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60`,
+      image: `https://images.unsplash.com/photo-1529738097101-93c2129413ed?ixlib=
+      rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1100&q=80`,
       title: "Bags",
       price: "$1000.00",
     },
     {
-      image: `https://images.unsplash.com/photo-1537261131936-3cdff36a1ac9?ixlib=
-      rb-1.2.1&auto=format&fit=crop&w=900&q=60`,
+      image: `https://images.unsplash.com/photo-1517635676447-3a480fbfd8f2?ixlib=
+      rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80`,
       title: "Shoes",
       price: "$700.00",
     },
     {
-      image: `https://images.unsplash.com/photo-1504703395950-b89145a5425b?ixlib=
-      rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=951&q=80`,
+      image: `https://images.unsplash.com/photo-1569144157591-c60f3f82f137?ixlib=
+      rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80`,
       title: "Clothing",
       price: "$700.00",
     },
@@ -91,7 +91,7 @@ export default class CategoryCard extends Vue {
     .c-text {
       // display: inline;
       bottom: 0;
-      transform: translateY(-20rem);
+      transform: translateY(-5rem);
     }
   }
   .c-text-1 {
@@ -107,7 +107,7 @@ export default class CategoryCard extends Vue {
     .c-text-1 {
       // display: inline;
       bottom: 0;
-      transform: translate(-7rem, -12rem);
+      transform: translate(-2rem, -2rem);
     }
   }
 }

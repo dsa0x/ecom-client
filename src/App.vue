@@ -33,25 +33,10 @@ html,
 * {
   box-sizing: border-box;
 }
-body {
+body,
+html {
   height: 100%;
   // width: 100vw;
-}
-html {
-  height: 3000px;
   font-size: 62.5%;
 }
-
-// #nav {
-//   padding: 30px;
-
-//   a {
-//     font-weight: bold;
-//     color: #2c3e50;
-
-//     &.router-link-exact-active {
-//       color: #42b983;
-//     }
-//   }
-// }
 </style>

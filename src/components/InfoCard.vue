@@ -58,6 +58,6 @@ export default class InfoCard extends Vue {
 }
 
 .click-down:hover {
-  @apply shadow-xltest transform -translate-y-1 transition-all duration-500;
+  @apply shadow-xltest transform -translate-y-1 transition-all duration-500 ease-in-out;
 }
 </style>

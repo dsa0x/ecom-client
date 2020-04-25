@@ -1,9 +1,11 @@
 import Vue from "vue";
 import VueRouter, { RouteConfig } from "vue-router";
 import Home from "../views/Home.vue";
+import ProductDetails from "../views/ProductDetails.vue";
 import Auth from "../views/Auth.vue";
 import RegisterForm from "../components/RegisterForm.vue";
 import LoginForm from "../components/LoginForm.vue";
+import CreateProduct from "../components/CreateProduct.vue";
 
 Vue.use(VueRouter);
 
@@ -40,6 +42,16 @@ const routes: Array<RouteConfig> = [
     // which is lazy-loaded when the route is visited.
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/About.vue"),
+  },
+  {
+    path: "/product/:id",
+    name: "ProductDetails",
+    component: ProductDetails,
+  },
+  {
+    path: "/product/new",
+    name: "CreateProduct",
+    component: CreateProduct,
   },
 ];
 

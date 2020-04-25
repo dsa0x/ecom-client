@@ -1,5 +1,5 @@
 <template>
-  <div class="main-grid gap-4 text-blue-200">
+  <div class="main-grid gap-4 text-blue-200 bg-custom-100 mt-16 pt-16">
     <div class="flex flex-col col-start-1 col-end-4 pl-6 ml-12">
       <h3
         class="text-3xl uppercase font-bold text-left heading-3 custom-border"

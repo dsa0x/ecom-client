@@ -38,6 +38,7 @@
 import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 import Button from "@/components/Button.vue";
 import axios from "axios";
+import { User } from "@/types/types";
 
 @Component({
   components: {
@@ -54,8 +55,16 @@ export default class LoginForm extends Vue {
     console.log("started");
     try {
       //   console.log(this.user);
-      const user = await axios.post(`http://localhost:5000/login`, this.user);
-      console.log(user.data);
+      const user: User = await axios.post(
+        `http://localhost:5000/login`,
+        this.user
+      );
+      console.log(user);
+      if (user)
+        this.$store.dispatch("setUser", {
+          user: user.data._user,
+          token: user.data.token,
+        });
     } catch (error) {
       console.log(error.response);
     }
