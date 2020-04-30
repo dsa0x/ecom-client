@@ -1,6 +1,6 @@
 <template>
-  <div class="main-grid gap-4 text-blue-200 bg-custom-100 mt-16 pt-16">
-    <div class="flex flex-col col-start-1 col-end-4 pl-6 ml-12">
+  <div class="main-grid gap-6 text-blue-200 bg-custom-100 mt-16 pt-16">
+    <div class="flex flex-col col-start-1 col-end-4 sm:col-end-7 pl-6 ml-12">
       <h3
         class="text-3xl uppercase font-bold text-left heading-3 custom-border"
       >
@@ -9,7 +9,7 @@
       <p class="text-3xl text-left">
         Stay connected with us to get notifications about discounts and coupons
       </p>
-      <div class="flex w-wide mt-6">
+      <div class="flex w-wide mt-6 mr-6">
         <input
           type="text"
           placeholder="Your Email"
@@ -22,7 +22,9 @@
         ></span>
       </div>
     </div>
-    <div class="flex flex-col col-start-4 col-end-5">
+    <div
+      class="flex flex-col col-start-4 col-end-5 sm:col-start-1 sm:col-end-3 sm:pl-5"
+    >
       <h3
         class="text-3xl uppercase font-bold text-left heading-3 custom-border"
       >
@@ -36,7 +38,9 @@
         <li>Terms</li>
       </ul>
     </div>
-    <div class="flex flex-col col-start-5 col-end-6">
+    <div
+      class="flex flex-col col-start-5 col-end-6 sm:col-start-3 sm:col-end-5"
+    >
       <h3
         class="text-3xl uppercase font-bold text-left heading-3 custom-border"
       >
@@ -50,7 +54,9 @@
         <li>Orders</li>
       </ul>
     </div>
-    <div class="flex flex-col col-start-6 col-end-7">
+    <div
+      class="flex flex-col col-start-6 col-end-7 sm:col-start-5 sm:col-end-7"
+    >
       <h3
         class="text-3xl uppercase font-bold text-left heading-3 custom-border"
       >
@@ -64,15 +70,15 @@
         <li>Delivery</li>
       </ul>
     </div>
-    <div class="footend flex">
+    <div class="footend hov flex sm:mt-4">
       <div class="icons text-4xl ml-12">
-        <span class="px-2 mdi mdi-facebook hov"></span>
-        <span class="px-2 mdi mdi-twitter hov"></span>
-        <span class="px-2 mdi mdi-instagram hov"></span>
-        <span class="px-2 mdi mdi-snapchat hov"></span>
-        <span class="px-2 mdi mdi-email hov"></span>
+        <span class="px-2 mdi mdi-facebook "></span>
+        <span class="px-2 mdi mdi-twitter "></span>
+        <span class="px-2 mdi mdi-instagram "></span>
+        <span class="px-2 mdi mdi-snapchat "></span>
+        <span class="px-2 mdi mdi-email "></span>
       </div>
-      <div class="text-4xl self-center m-auto hov transform -translate-x-16">
+      <div class="text-4xl self-center m-auto  transform -translate-x-16">
         &copy; Copyright 2020
       </div>
     </div>
@@ -93,9 +99,15 @@ export default class Gallery extends Vue {
 .main-grid {
   display: grid;
   //   height: 500px;
-  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  // padding-right: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(min-content, 1fr));
   grid-template-rows: 3fr 1fr;
   row-gap: 8rem;
+
+  @media screen and (max-width: 639px) {
+    grid-template-rows: 1fr 1fr min-content;
+    row-gap: 1rem;
+  }
 }
 
 .heading-3 {
@@ -146,7 +158,7 @@ ul {
 
 li,
 .hov {
-  @apply text-3xl text-left pt-4;
+  @apply text-3xl text-left py-3;
   cursor: pointer;
 }
 

@@ -1,15 +1,16 @@
 <template>
   <div>
-    <div class="grid grid-cols-2 text-4xl mb-32">
+    <div class="grid grid-cols-2 sm:grid-cols-1 text-4xl mb-32">
       <div class="items bg-gray-100">
         <img
-          class="px-48 py-24 shadow-xs h-full object-cover w-full"
-          :src="test[0].image"
+          class="px-48 lg:px-32 md:p-0 py-24 shadow-xs h-full object-cover w-full"
+          :src="product.images"
           alt=""
         />
       </div>
       <div
-        class="items bg-custom-100 justify-around text-left flex flex-col text-blue-100 p-2 px-64 py-12"
+        class="items bg-custom-100 justify-around text-left flex flex-col text-blue-100 p-2
+         px-56 lg:px-32 py-12 md:py-2 md:px-24"
       >
         <div class="flex flex-col">
           <div class="flex text-3xl text-custom-200">
@@ -21,15 +22,13 @@
             <span class="ml-auto mdi mdi-heart"></span>
           </div>
           <div class="text-4xl tracking-widest">
-            {{ test[0].title }}
+            {{ product.title }}
           </div>
           <div class="text-2xl py-4">
-            product Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-            Ad, aspernatur! Maiores hic minus tenetur alias eius praesentium
-            iure corrupti vitae?
+            {{ product.description }}
           </div>
           <div class="text-5xl">
-            {{ test[0].price }}
+            {{ currencify(product.price) }}
           </div>
           <div class="text-3xl mt-6">
             Tags:
@@ -40,12 +39,12 @@
           </div>
         </div>
         <div
-          class="mb-6 select-none flex justify-between relative h-auto items-center"
+          class="mb-6 select-none flex justify-between relative h-auto items-center w-5/6"
         >
           <div
             class="bg-custom-200 active:bg-custom-400 text-blue-750 px-5 py-2 cursor-pointer text-center flex justify-between mr-4 rounded-md flex-grow"
           >
-            <button class="">Add to cart</button>
+            <button @click="prr" class="outline-none">Add to cart</button>
             <span class="mdi mdi-cart"></span>
           </div>
           <input
@@ -67,7 +66,7 @@
               >&plus;</span
             >
             <span
-              @click="quantity--"
+              @click="quantity != 0 ? quantity-- : ''"
               class=" h-1/2 w-10 outline-none text-center leading-none cursor-pointer rounded-br-md hover:bg-custom-200 hover:text-blue-100"
               >&minus;</span
             >
@@ -75,17 +74,23 @@
         </div>
       </div>
     </div>
-    <Related class="mb-24" />
+    <!-- <Related class="mb-24" /> -->
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 import Related from "@/components/Related.vue";
+import { mapState } from "vuex";
 
 @Component({
   components: {
     Related,
+  },
+  computed: {
+    ...mapState({
+      productsa: (state: any) => state.products,
+    }),
   },
 })
 export default class ProductDetails extends Vue {
@@ -93,10 +98,27 @@ export default class ProductDetails extends Vue {
   @Prop() subtitle!: string;
   @Prop() icon!: string;
   quantity: number = 1;
+
   get product() {
     return this.$store.state.products.find((product) => {
-      product.slug == this.$route.query.slug;
+      return product.slug == this.$route.query.slug;
     });
+  }
+  get currency() {
+    return this.$store.state.currency;
+  }
+
+  currencify(value) {
+    if (!value) return "";
+    let currency = this.currency.desc;
+    return new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: currency.toUpperCase(),
+    }).format(value);
+  }
+
+  prr() {
+    console.log(this.product);
   }
   test: Array<object> = [
     {
@@ -146,6 +168,9 @@ export default class ProductDetails extends Vue {
 .items {
   height: calc(100vh - 15rem);
   //   align-content: center;
+  @media screen and (max-width: 767px) {
+    height: 400px;
+  }
 }
 
 input[type="number"]::-webkit-inner-spin-button,

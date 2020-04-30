@@ -1,11 +1,17 @@
 <template>
   <transition name="scale-up">
     <!-- <div class="flex justify-center absolute view"> -->
-    <div class="grid grid-cols-2  bg-gray-100 rounded-lg overflow-hidden w-4/5">
-      <transition-group class="form-wrap" tag="div" name="fade">
+    <div
+      class="grid grid-cols-2 sm:grid-cols-1 bg-gray-100 rounded-lg overflow-hidden w-4/5"
+    >
+      <transition-group
+        class="form-wrap w-full md:px-8 px-16"
+        tag="div"
+        name="fade"
+      >
         <router-view class="" :key="1"></router-view>
       </transition-group>
-      <div class="overflow-hidden col-start-2 col-end-3">
+      <div class="overflow-hidden sm:hidden col-start-2 col-end-3">
         <img
           :src="imageList[0]"
           class="w-full object-cover bg-center h-full"
@@ -36,7 +42,6 @@ export default class Auth extends Vue {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .form-wrap {
-  width: 35rem;
   align-self: center;
   //   padding-top: 5rem;
   justify-self: center;

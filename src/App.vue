@@ -38,5 +38,20 @@ html {
   height: 100%;
   // width: 100vw;
   font-size: 62.5%;
+  // max-width: 1200px;
+
+  @media screen and (max-width: 1023px) {
+    font-size: 56.25%;
+  }
+  @media screen and (max-width: 767px) {
+    font-size: 50%;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  #App {
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 </style>

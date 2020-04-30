@@ -8,7 +8,7 @@
         :src="test[0].image"
         alt=""
       />
-      <span class="c-text text-blue-100 text-8xl font-bold">{{
+      <span class="c-text text-blue-100 text-6xl sm:text-4xl font-bold">{{
         test[0].title
       }}</span>
     </div>
@@ -19,7 +19,7 @@
     >
       <img class=" block w-full h-full object-cover" :src="each.image" alt="" />
       <span
-        class="c-text-1 absolute bottom-0 right-0 text-blue-100 text-5xl font-bold"
+        class="c-text-1 absolute bottom-0 right-0 text-blue-100 text-5xl sm:text-3xl font-bold"
         >{{ each.title }}</span
       >
     </div>

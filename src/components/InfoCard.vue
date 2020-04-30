@@ -1,13 +1,13 @@
 <template>
   <div
-    class="text-gray-500 h-40 bg-blue-750 items-center flex bg-red-500 text-4xl justify-evenly click-down"
+    class="text-gray-500 h-40 bg-blue-750 items-center flex bg-red-500 text-4xl  justify-evenly click-down"
   >
     <span
       :class="icon"
       class="mdi
      custom-border text-6xl"
     ></span>
-    <div class="flex flex-col text pl-7">
+    <div class="flex flex-col  text pl-7 ">
       <span class="uppercase">{{ title }}</span>
       <span class="text-2xl">{{ subtitle }}</span>
     </div>

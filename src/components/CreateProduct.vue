@@ -1,13 +1,14 @@
 <template>
   <div
-    class="main grid-cols-4 h-screen col-gap-2 row-gap-8 text-blue-100 p-8 ml-10"
+    class="main grid-cols-4 h-screen col-gap-2 row-gap-8 text-blue-100 p-8 ml-10 sm:m-0"
   >
-    <div class="flex flex-col col-start-1 col-end-4 items-start ">
+    <div class="flex flex-col col-start-1 col-end-4 sm:col-end-5 items-start ">
       <label class="input-label" for="title">Product Title</label>
       <input class="input" type="text" name="title" v-model="product.title" />
     </div>
     <div
-      class="flex flex-col col-start- col-end-5 row-start-2 items-center p-6 text-3xl"
+      class="flex flex-col col-start-4 col-end-5 sm:col-start-1 row-start-5 sm:row-start-5 sm:row-end-6 
+      items-center p-6 text-3xl sm:flex-row"
     >
       <SideBarHeading label="Select Category" />
       <div class="cat-item">
@@ -17,7 +18,7 @@
       <div class="cat-item">Phones</div>
     </div>
     <div
-      class="flex flex-col col-start-1 col-end-4 row-start-2 row-end-3 items-start "
+      class="flex flex-col col-start-1 col-end-4 sm:col-end-5 row-start-2 row-end-3 items-start "
     >
       <label class="input-label" for="title">Product Description</label>
       <textarea
@@ -31,7 +32,7 @@
     </div>
 
     <div
-      class="flex justify-between col-start-1 col-end-4 row-start-3 row-end-4 items-start "
+      class="flex justify-between col-start-1 col-end-4 sm:col-end-5 row-start-3 row-end-4 items-start "
     >
       <div class="flex flex-col items-start">
         <label class="input-label" for="title">Regular Price</label>
@@ -53,7 +54,7 @@
       </div>
     </div>
     <div
-      class=" h-full rounded-md flex flex-col grid-cols-4 col-start-1 col-end-4 row-start-4 row-end-5 items-start cursor-pointer"
+      class=" h-full rounded-md flex flex-col grid-cols-4 col-start-1 col-end-4 sm:col-end-5 row-start-4 row-end-5 items-start cursor-pointer"
     >
       <label class="input-label" for="title">Upload Images</label>
       <!-- <div class="grid grid-cols-4"> -->
@@ -74,7 +75,7 @@
       </vue-dropzone>
       <!-- </div> -->
     </div>
-    <div class="row-start-5 row-end-6">
+    <div class="row-start-5 row-end-6 sm:row-start-6 sm:row-end-7">
       <btn label="Submit" :onClick="submit" color="light"></btn>
     </div>
   </div>

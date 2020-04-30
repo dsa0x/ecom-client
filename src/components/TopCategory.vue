@@ -1,5 +1,5 @@
 <template>
-  <div class="flex px-4 flex-col">
+  <div class="flex lg:mx-2 mx-1 flex-col">
     <div
       class="text-3xl text-gray-500 font-medium custom-border text-left  my-8 uppercase"
     >
@@ -7,48 +7,48 @@
     </div>
     <div class="grid grid-cols-3 gap-2 mt-3">
       <div
-        class="flex flex-col text-xl bg-blue-750 text-gray-500 cursor-pointer hover:bg-gray-800 
+        class="flex flex-col text-xl lg:text-base bg-blue-750 text-gray-500 cursor-pointer hover:bg-gray-800 
         hover:text-blue-200 click-down"
       >
         <span class="mdi mdi-laptop text-5xl"></span>Computers
       </div>
       <div
-        class="flex flex-col text-xl bg-blue-750 hover:bg-gray-800 hover:text-blue-200 text-gray-500 cursor-pointer click-down"
+        class="flex flex-col text-xl lg:text-base bg-blue-750 hover:bg-gray-800 hover:text-blue-200 text-gray-500 cursor-pointer click-down"
       >
         <span class="mdi mdi-bag-checked text-5xl"></span>Bags
       </div>
       <div
-        class="flex flex-col text-xl bg-blue-750 hover:bg-gray-800 hover:text-blue-200 text-gray-500 cursor-pointer click-down"
+        class="flex flex-col text-xl lg:text-base bg-blue-750 hover:bg-gray-800 hover:text-blue-200 text-gray-500 cursor-pointer click-down"
       >
         <span class="mdi mdi-cellphone text-5xl"></span>Phones
       </div>
       <div
-        class="flex flex-col text-xl bg-blue-750 hover:bg-gray-800 hover:text-blue-200 text-gray-500 cursor-pointer click-down"
+        class="flex flex-col text-xl lg:text-base bg-blue-750 hover:bg-gray-800 hover:text-blue-200 text-gray-500 cursor-pointer click-down"
       >
         <span class="mdi mdi-microphone-outline text-5xl"></span>Speakers
       </div>
       <div
-        class="flex flex-col text-xl bg-blue-750 hover:bg-gray-800 hover:text-blue-200 text-gray-500 cursor-pointer click-down"
+        class="flex flex-col text-xl lg:text-base bg-blue-750 hover:bg-gray-800 hover:text-blue-200 text-gray-500 cursor-pointer click-down"
       >
         <span class="mdi mdi-muffin text-5xl"></span>Ice Cream
       </div>
       <div
-        class="flex flex-col text-xl bg-blue-750 hover:bg-gray-800 hover:text-blue-200 text-gray-500 cursor-pointer click-down"
+        class="flex flex-col text-xl lg:text-base bg-blue-750 hover:bg-gray-800 hover:text-blue-200 text-gray-500 cursor-pointer click-down"
       >
         <span class="mdi mdi-fruit-grapes text-5xl"></span>Fruits
       </div>
       <div
-        class="flex flex-col text-xl bg-blue-750 hover:bg-gray-800 hover:text-blue-200 text-gray-500 cursor-pointer click-down"
+        class="flex flex-col text-xl lg:text-base bg-blue-750 hover:bg-gray-800 hover:text-blue-200 text-gray-500 cursor-pointer click-down"
       >
         <span class="mdi mdi-cloud-sync-outline text-5xl"></span>Cloud
       </div>
       <div
-        class="flex flex-col text-xl bg-blue-750 hover:bg-gray-800 hover:text-blue-200 text-gray-500 cursor-pointer click-down"
+        class="flex flex-col text-xl lg:text-base bg-blue-750 hover:bg-gray-800 hover:text-blue-200 text-gray-500 cursor-pointer click-down"
       >
         <span class="mdi mdi-gamepad-variant text-5xl"></span>Games
       </div>
       <div
-        class="flex flex-col text-xl bg-blue-750 hover:bg-gray-800 hover:text-blue-200 text-gray-500 cursor-pointer click-down"
+        class="flex flex-col text-xl lg:text-base bg-blue-750 hover:bg-gray-800 hover:text-blue-200 text-gray-500 cursor-pointer click-down"
       >
         <span class="mdi mdi-google-translate text-5xl"></span>Translator
       </div>

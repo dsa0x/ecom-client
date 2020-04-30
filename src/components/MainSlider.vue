@@ -1,10 +1,17 @@
 <template>
   <div class="relative">
-    <div class="" v-for="img in [currentIndex]" :key="img" alt="">
-      <transition name="fade">
-        <img :src="currentImg" class="object-cover w-full" alt="" />
-      </transition>
-    </div>
+    <!-- <transition-group name="fade"> -->
+    <!-- <div class="" v-for="img in [currentIndex]" :key="img" alt=""> -->
+    <transition name="fade">
+      <img
+        :src="currentImg"
+        class="object-cover w-full"
+        alt=""
+        :key="currentImg"
+      />
+    </transition>
+    <!-- </div> -->
+    <!-- </transition-group> -->
 
     <div class="slider-select p-3 m-2 z-40 absolute flex flex-col">
       <div
@@ -118,8 +125,8 @@ img {
   visibility: visible;
   transition: all 2s;
   // position: absolute;
-  width: 100%;
-  opacity: 0.5;
+  // width: 100%;
+  opacity: 0;
 }
 
 .fade-enter-to,
@@ -129,7 +136,7 @@ img {
 
 .fade-enter,
 .fade-leave-to {
-  width: 100%;
+  // width: 100%;
   opacity: 0;
 }
 

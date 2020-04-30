@@ -1,12 +1,12 @@
 <template>
   <div>
-    <ProductList :title="title" :products="allProducts" />
+    <ProductList :title="title" :products="allProducts" :main="true" />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from "vue-property-decorator";
-import ProductList from "./ProductList.vue";
+import ProductList from "@/components/ProductList.vue";
 import axios from "axios";
 import ProductMixin from "@/mixins/productMixin";
 
@@ -14,32 +14,10 @@ import ProductMixin from "@/mixins/productMixin";
   components: {
     ProductList,
   },
-
-  // mixins: [productMixin],
 })
-export default class PopularProducts extends ProductMixin {
-  title: string = "Popular Products";
+export default class Products extends ProductMixin {
+  title: string = "All Products";
 
-  // get allProducts() {
-  //   return this.$store.state.products;
-  // }
-
-  // async getProducts() {
-  //   if (!this.$store.state.products.length) {
-  //     const products = await axios.get(
-  //       `${process.env.VUE_APP_SERVER_URL}/products`
-  //     );
-  //     if (products) {
-  //       products.data.forEach((product) => {
-  //         product.images = product.images.map(
-  //           (img) =>
-  //             `${process.env.VUE_APP_SERVER_URL}/assets/images/${img.url}`
-  //         );
-  //       });
-  //       this.$store.commit("ADD_PRODUCTS", products.data);
-  //     }
-  //   }
-  // }
   async mounted() {
     await this.getProducts();
   }

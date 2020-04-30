@@ -3,6 +3,7 @@ import VueRouter, { RouteConfig } from "vue-router";
 import Home from "../views/Home.vue";
 import ProductDetails from "../views/ProductDetails.vue";
 import Auth from "../views/Auth.vue";
+import Products from "../views/Products.vue";
 import RegisterForm from "../components/RegisterForm.vue";
 import LoginForm from "../components/LoginForm.vue";
 import CreateProduct from "../components/CreateProduct.vue";
@@ -44,6 +45,11 @@ const routes: Array<RouteConfig> = [
     path: "/product/",
     name: "ProductDetails",
     component: ProductDetails,
+  },
+  {
+    path: "/products/",
+    name: "Products",
+    component: Products,
   },
   {
     path: "/product/new",

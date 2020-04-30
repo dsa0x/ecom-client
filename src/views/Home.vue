@@ -1,10 +1,16 @@
 <template>
   <div class="relative transition transition-all duration-200">
-    <div class="main grid grid-cols-10 gap-6 px-5">
-      <TopCategory class="col-span-2" />
-      <MainSlider class="col-start-3 col-end-11 row-start-1 row-end-3" />
-      <BestSellerSide class="col-span-2" />
-      <div class="info__main">
+    <div class="main grid grid-cols-10 gap-6 lg:gap-0">
+      <TopCategory class="col-span-2 md:hidden" />
+      <MainSlider
+        class="col-start-3 col-end-11 row-start-1 row-end-3 md:col-start-1"
+      />
+      <BestSellerSide
+        class="col-span-2 md:col-start-1 md:col-end-11 sm:hidden"
+      />
+      <div
+        class="info__main grid grid-cols-3 sm:grid-cols-1 gap-12 items-center p-8"
+      >
         <InfoCard
           class="py-5"
           title="Free Shipping"
@@ -30,7 +36,7 @@
         class="col-start-1 col-end-11 mt-5 row-start-6 row-end-7"
       />
       <NewProducts class="col-start-1 col-end-11 mt-5 row-start-7 row-end-8" />
-      <Gallery class="col-start-1 col-end-11 row-start-8 row-end-9" />
+      <Gallery class="mt-16 col-start-1 col-end-11 row-start-8 row-end-9" />
     </div>
     <div
       @click.self="home"
@@ -84,11 +90,11 @@ export default {
 <style lang="scss" scoped>
 .info__main {
   grid-column: 1/-1;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  column-gap: 3rem;
-  align-items: center;
-  padding: 2rem;
+  // display: grid;
+  // grid-template-columns: 1fr 1fr 1fr;
+  // column-gap: 3rem;
+  // align-items: center;
+  // padding: 2rem;
 }
 
 .main {
@@ -97,6 +103,18 @@ export default {
       4,
       minmax(0, min-content)
     );
+  @media screen and (max-width: 767px) {
+    grid-template-rows: repeat(3, minmax(0, min-content)) 25vh 25vh repeat(
+        4,
+        minmax(0, min-content)
+      );
+  }
+  // @media screen and (max-width: 639px) {
+  //   grid-template-rows: repeat(3, minmax(0, 25rem)) 25vh 25vh repeat(
+  //       4,
+  //       minmax(0, min-content)
+  //     );
+  // }
 }
 
 .view {
