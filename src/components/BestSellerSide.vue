@@ -9,7 +9,7 @@
       class="flex flex-col mx-4 md:flex-row md:justify-between sm:flex-wrap sm:justify-center sm:pl-16"
     >
       <div
-        class="flex md:flex-col my-4 cursor-pointer hover:opacity-75 basis items-end md:items-start"
+        class="flex md:flex-col my-4 cursor-pointer hover:opacity-75 basis items-start md:items-start"
         v-for="(item, index) in products"
         :key="index"
       >

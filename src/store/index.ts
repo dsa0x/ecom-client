@@ -29,7 +29,8 @@ export default new Vuex.Store({
   },
   getters: {},
   mutations: {
-    SET_USER(state, { user }) {
+    SET_USER(state, user) {
+      console.log(user, "user");
       state.user = { ...state.user, ...user };
     },
     SET_LOGGED_IN({ user }, loginStatus) {
@@ -64,7 +65,8 @@ export default new Vuex.Store({
       cart.products.push(product);
     },
     UPDATE_CART({ cart }, products) {
-      cart.products = products;
+      console.log(products, "pp");
+      cart.products = products; //.concat(<any>{});
     },
   },
   actions: {
@@ -91,7 +93,6 @@ export default new Vuex.Store({
       } else {
         cart = await axios.get(`${process.env.VUE_APP_SERVER_URL}/cart`);
       }
-      console.log(cart);
       commit("UPDATE_CART", cart.data.cart.products);
       // commit("ADD_TO_CART", product);
     },

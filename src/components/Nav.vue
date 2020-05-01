@@ -113,7 +113,7 @@
                 class=" overflow-hidden border-solid border-gray-300 bg-gray-100 rounded-lg inline-flex 
           self-end z-50 absolute right-0 dropdown-custom shadow-xl"
               >
-                <ul v-if="Object.keys(cartProducts[0]).length" class="">
+                <ul v-if="productExist" class="">
                   <li
                     class=" block p-3 w-64 pointer bg-custom-100 hover:bg-custom-300 text-blue-200"
                     v-for="(product, id) in cartProducts"
@@ -123,11 +123,7 @@
                   </li>
                 </ul>
                 <div
-                  v-if="
-                    !cartProducts.length ||
-                      cartProducts.length < 1 ||
-                      Object.keys(cartProducts[0]).length == 0
-                  "
+                  v-if="!productExist"
                   class=" block p-3 w-64 pointer bg-custom-100 hover:bg-custom-300 text-blue-200"
                 >
                   <a class=""> Your Shopping Cart is empty </a>
@@ -144,7 +140,7 @@
           <span class="text-4xl mdi mdi-account-star"></span>Profile
         </div>
         <div
-          v-if="isLoggedIn"
+          v-if="isAdmin"
           @click="$router.push({ name: 'CreateProduct' })"
           class="icons-text"
         >
@@ -161,9 +157,20 @@ import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 import { mapState } from "vuex";
 
 @Component({
-  computed: mapState({
-    cartProducts: (state: any) => state.cart.products,
-  }),
+  computed: {
+    ...mapState({
+      cartProducts: (state: any) => state.cart.products,
+      productExist: function() {
+        if (
+          !this.cartProducts.length ||
+          !Object.keys(this.cartProducts[0]).length
+        )
+          return false;
+        return true;
+      },
+      isAdmin: (state: any) => (state.user.role == "Admin" ? true : false),
+    }),
+  },
 })
 export default class Nav extends Vue {
   @Prop() private msg!: string;

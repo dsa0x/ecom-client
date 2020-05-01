@@ -64,6 +64,8 @@ export default class LoginForm extends Vue {
         this.$store.dispatch("setUser", {
           user: user.data._user,
           token: user.data.token,
+          // role: user.data.role,
+          // verified: user.data.verified,
         });
       this.$router.push({ path: "/" });
     } catch (error) {

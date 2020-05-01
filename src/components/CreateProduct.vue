@@ -7,7 +7,7 @@
       <input class="input" type="text" name="title" v-model="product.title" />
     </div>
     <div
-      class="flex flex-col col-start-4 col-end-5 sm:col-start-1 row-start-5 sm:row-start-5 sm:row-end-6 
+      class="flex flex-col col-start-4 col-end-5 sm:col-start-1 row-start-2 sm:row-start-5 sm:row-end-6 
       items-center p-6 text-3xl sm:flex-row"
     >
       <SideBarHeading label="Select Category" />
