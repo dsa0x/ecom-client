@@ -1,10 +1,10 @@
 <template>
   <div>
-    <div class="grid grid-cols-2 sm:grid-cols-1 text-4xl mb-32">
+    <div v-if="product" class="grid grid-cols-2 sm:grid-cols-1 text-4xl mb-32">
       <div class="items bg-gray-100">
         <img
           class="px-48 lg:px-32 md:p-0 py-24 shadow-xs h-full object-cover w-full"
-          :src="product.images"
+          :src="product.images[0].url"
           alt=""
         />
       </div>
@@ -44,7 +44,7 @@
           <div
             class="bg-custom-200 active:bg-custom-400 text-blue-750 px-5 py-2 cursor-pointer text-center flex justify-between mr-4 rounded-md flex-grow"
           >
-            <button @click="prr" class="outline-none">Add to cart</button>
+            <button @click="addToCart" class="outline-none">Add to cart</button>
             <span class="mdi mdi-cart"></span>
           </div>
           <input
@@ -82,6 +82,7 @@
 import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 import Related from "@/components/Related.vue";
 import { mapState } from "vuex";
+import Axios from "axios";
 
 @Component({
   components: {
@@ -117,8 +118,12 @@ export default class ProductDetails extends Vue {
     }).format(value);
   }
 
-  prr() {
-    console.log(this.product);
+  addToCart() {
+    // console.log(this.product);
+    this.$store.dispatch("addToCart", {
+      ...this.product,
+      quantity: this.quantity,
+    });
   }
   test: Array<object> = [
     {

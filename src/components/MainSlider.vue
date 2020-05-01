@@ -2,14 +2,14 @@
   <div class="relative">
     <!-- <transition-group name="fade"> -->
     <!-- <div class="" v-for="img in [currentIndex]" :key="img" alt=""> -->
-    <transition name="fade">
-      <img
-        :src="currentImg"
-        class="object-cover w-full"
-        alt=""
-        :key="currentImg"
-      />
-    </transition>
+    <!-- <transition name="fade"> -->
+    <img
+      :src="currentImg"
+      class="object-cover w-full"
+      alt=""
+      :key="currentImg"
+    />
+    <!-- </transition> -->
     <!-- </div> -->
     <!-- </transition-group> -->
 

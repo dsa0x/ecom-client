@@ -23,6 +23,7 @@
           class="mdi mdi-eye bg-custom-300 group-hover:bg-custom-300 group-hover:text-blue-900"
         ></span>
         <div
+          @click="addToCart(item)"
           class="cart-btn text-gray-500 text-3xl bg-blue-750 group-hover:text-gray-300
            col-start-2 col-end-6"
         >
@@ -82,6 +83,13 @@ export default class ProductList extends ProductMixin {
   goToProduct(slug) {
     // console.log(this.products);
     this.$router.push({ name: "ProductDetails", query: { slug } });
+  }
+
+  addToCart(product) {
+    this.$store.dispatch("addToCart", {
+      ...product,
+      quantity: 1,
+    });
   }
 
   async mounted() {

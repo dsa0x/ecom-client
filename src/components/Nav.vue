@@ -19,6 +19,11 @@
             ><span class="pr-1 mdi mdi-message"></span>Contact Us</a
           >
         </li>
+        <li v-if="isLoggedIn" @click="logout" class="">
+          <a class="hover:text-gray-600 px-3" href="#"
+            ><span class="pr-1 mdi mdi-message"></span>Logout</a
+          >
+        </li>
       </ul>
       <div class="lg:hidden">
         Free shipping on all orders above {{ currency.symbol }}100
@@ -96,7 +101,47 @@
           <span class="text-4xl mdi mdi-heart-outline"></span>Wishlist
         </div>
         <div class="icons-text">
-          <span class="text-4xl mdi mdi-cart"></span>Cart
+          <div
+            class="flex flex-col relative"
+            @mouseleave="cartOpen = false"
+            @click="cartOpen = !cartOpen"
+          >
+            <span class="text-4xl mdi mdi-cart"></span>Cart
+            <transition name="fade">
+              <div
+                v-show="cartOpen"
+                class=" overflow-hidden border-solid border-gray-300 bg-gray-100 rounded-lg inline-flex 
+          self-end z-50 absolute right-0 dropdown-custom shadow-xl"
+              >
+                <ul v-if="Object.keys(cartProducts[0]).length" class="">
+                  <li
+                    class=" block p-3 w-64 pointer bg-custom-100 hover:bg-custom-300 text-blue-200"
+                    v-for="(product, id) in cartProducts"
+                    :key="id"
+                  >
+                    <a class=""> {{ product.price }} {{ product.quantity }} </a>
+                  </li>
+                </ul>
+                <div
+                  v-if="
+                    !cartProducts.length ||
+                      cartProducts.length < 1 ||
+                      Object.keys(cartProducts[0]).length == 0
+                  "
+                  class=" block p-3 w-64 pointer bg-custom-100 hover:bg-custom-300 text-blue-200"
+                >
+                  <a class=""> Your Shopping Cart is empty </a>
+                </div>
+              </div>
+            </transition>
+          </div>
+        </div>
+        <div
+          v-if="isLoggedIn"
+          @click="$router.push({ name: 'CreateProduct' })"
+          class="icons-text"
+        >
+          <span class="text-4xl mdi mdi-account-star"></span>Profile
         </div>
         <div
           v-if="isLoggedIn"
@@ -113,8 +158,13 @@
 
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from "vue-property-decorator";
+import { mapState } from "vuex";
 
-@Component
+@Component({
+  computed: mapState({
+    cartProducts: (state: any) => state.cart.products,
+  }),
+})
 export default class Nav extends Vue {
   @Prop() private msg!: string;
 
@@ -125,6 +175,7 @@ export default class Nav extends Vue {
   };
   // currency: object = { name: "Euro", symbol: "€", desc: "eur" };
   isOpen: Boolean = false;
+  cartOpen: Boolean = false;
 
   get currency() {
     return this.$store.state.currency;
@@ -138,6 +189,10 @@ export default class Nav extends Vue {
     return this.$store.state.user.isLoggedIn;
   }
 
+  logout() {
+    this.$store.commit("SET_LOGGED_IN", false);
+  }
+
   get lastName() {
     return this.$store.state.user.lastName;
   }
@@ -149,6 +204,9 @@ export default class Nav extends Vue {
   }
 
   // @Watch("currency")
+  mounted() {
+    this.$store.dispatch("fetchProducts");
+  }
 
   toggle() {
     this.isOpen = !this.isOpen;

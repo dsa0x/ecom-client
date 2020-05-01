@@ -10,19 +10,19 @@
     >
       <div
         class="flex md:flex-col my-4 cursor-pointer hover:opacity-75 basis items-end md:items-start"
-        v-for="(item, index) in test"
+        v-for="(item, index) in products"
         :key="index"
       >
         <img
           class=" h-20 w-20 mr-4 md:h-56 md:w-56 scale-down"
-          :src="item.image"
+          :src="item.images[0]"
           :alt="item.title"
         />
         <div
           class="text-left text-2xl md:text-3xl font-medium hover:text-blue-100 text-gray-500  flex flex-col"
         >
           <span class=" md:text-custom-300 ">{{ item.title }}</span>
-          <span>{{ item.price }}</span>
+          <span>{{ currencify(item.price) }}</span>
         </div>
       </div>
     </div>
@@ -31,9 +31,27 @@
 
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from "vue-property-decorator";
+import { mapState } from "vuex";
 
-@Component
+@Component({
+  computed: mapState({
+    products: (state: any) => state.products.slice(0, 3),
+  }),
+})
 export default class BestSellerSide extends Vue {
+  get currency() {
+    return this.$store.state.currency;
+  }
+
+  currencify(value) {
+    if (!value) return "";
+    let currency = this.currency.desc;
+    return new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: currency.toUpperCase(),
+    }).format(value);
+  }
+
   test: Object = [
     {
       image: `https://cdn.pixabay.com/photo/2018/05/26/18/06/dog-3431913_1280.jpg`,
